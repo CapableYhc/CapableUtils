@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="renderer" content="webkit">
+  <meta name="author" content="chenhailin, 875576452@qq.com"/>
+  <title>变电现场应用</title>
+  <style>
+    @-webkit-keyframes ball-grid-pulse-loading {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+      }
+      50% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        opacity: .7
+      }
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1
+      }
+    }
+  
+    @keyframes ball-grid-pulse-loading {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+      }
+      50% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        opacity: .7
+      }
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1
+      }
+    }
+  
+    .ball-grid-pulse-loading {
+      width: 57px
+    }
+  
+    .ball-grid-pulse-loading>div:nth-child(1) {
+      -webkit-animation-delay: -0.06s;
+      animation-delay: -0.06s;
+      -webkit-animation-duration: .72s;
+      animation-duration: .72s
+    }
+  
+    .ball-grid-pulse-loading>div:nth-child(2) {
+      -webkit-animation-delay: .25s;
+      animation-delay: .25s;
+      -webkit-animation-duration: 1.02s;
+      animation-duration: 1.02s
+    }
+  
+    .ball-grid-pulse-loading>div:nth-child(3) {
+      -webkit-animation-delay: -0.17s;
+      animation-delay: -0.17s;
+      -webkit-animation-duration: 1.28s;
+      animation-duration: 1.28s
+    }
+  
+    .ball-grid-pulse-loading>div:nth-child(4) {
+      -webkit-animation-delay: .48s;
+      animation-delay: .48s;
+      -webkit-animation-duration: 1.42s;
+      animation-duration: 1.42s
+    }
+  
+    .ball-grid-pulse-loading>div:nth-child(5) {
+      -webkit-animation-delay: .31s;
+      animation-delay: .31s;
+      -webkit-animation-duration: 1.45s;
+      animation-duration: 1.45s
+    }
+  
+    .ball-grid-pulse-loading>div:nth-child(6) {
+      -webkit-animation-delay: .03s;
+      animation-delay: .03s;
+      -webkit-animation-duration: 1.18s;
+      animation-duration: 1.18s
+    }
+  
+    .ball-grid-pulse-loading>div:nth-child(7) {
+      -webkit-animation-delay: .46s;
+      animation-delay: .46s;
+      -webkit-animation-duration: .87s;
+      animation-duration: .87s
+    }
+  
+    .ball-grid-pulse-loading>div:nth-child(8) {
+      -webkit-animation-delay: .78s;
+      animation-delay: .78s;
+      -webkit-animation-duration: 1.45s;
+      animation-duration: 1.45s
+    }
+  
+    .ball-grid-pulse-loading>div:nth-child(9) {
+      -webkit-animation-delay: .45s;
+      animation-delay: .45s;
+      -webkit-animation-duration: 1.06s;
+      animation-duration: 1.06s
+    }
+  
+    .ball-grid-pulse-loading>div {
+      background-color: #38b7ea;
+      width: 15px;
+      height: 15px;
+      border-radius: 100%;
+      margin: 2px;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      display: inline-block;
+      float: left;
+      -webkit-animation-name: ball-grid-pulse-loading;
+      animation-name: ball-grid-pulse-loading;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      -webkit-animation-delay: 0;
+      animation-delay: 0
+    }
+  
+    #loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 40px;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      transition: all ease 500ms;
+      opacity: 1;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    }
+  
+    .pageLoaded {
+      opacity: 0!important;
+      z-index: 0!important
+    }
+  
+    #loading .loadingCenter {
+      width: 200px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center
+    }
+  
+    #loading .loadingCenter .loading__balls {
+      padding: 20px;
+      border-radius: 100%;
+      box-sizing: border-box;
+      width: 100px!important;
+      height: 100px!important
+    }
+  
+    #loading .loadingCenter .loading__notice {
+      font-size: 20px;
+      padding: 0;
+      margin: 0;
+      line-height: 120%;
+      box-sizing: border-box;
+      font-weight: 800
+    }
+  
+    #loading.hide {
+      display: none
+    }
+  </style>
+  <script>
+    if (window.navigator.appName == "Microsoft Internet Explorer" && parseInt(window.navigator.appVersion.split(";")[1].replace(/[ ]/g, "").replace("MSIE", "")) < 9) {
+      if (confirm('您的浏览器版本过低，请下载使用新版浏览器，点击确定后将跳转下载谷歌浏览器！')) {
+        var bits=window.navigator.platform.indexOf('32')>-1?32:64;
+        location.href='/file/downloadController/getBrowser.do?version='+bits
+      }
+    }
+    window.hideLoadingPage = function hideLoadingPage() { var a = document.getElementById("loading"); a.className += "pageLoaded"; setTimeout(function () { a.className += " hide" }, 500) };
+
+  </script>
+</head>
+
+<body>
+    <script src=<%= htmlWebpackPlugin.options.path %>tinymce/tinymce.min.js></script>
+    
+<!--app start-->
+<div id="app">
+
+</div>
+<!--app end-->
+<!--Loading-->
+<div id="loading">
+  <section class="loadingCenter">
+    <div class="loading__balls ball-grid-pulse-loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <p class="loading__notice">
+      Loading
+    </p>
+  </section>
+</div>
+<!-- built files will be auto injected -->
+</body>
+
+</html>
